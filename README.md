@@ -31,6 +31,24 @@
 $ npm install
 ```
 
+## How to Run
+
+### Quick Start:
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Start RabbitMQ (Docker)
+docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+
+# 3. Generate Prisma Client
+npx prisma generate
+
+# 4. Start the application
+npm run start:dev
+```
+
 ## Compile and run the project
 
 ```bash
