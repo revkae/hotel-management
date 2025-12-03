@@ -46,16 +46,25 @@ export class ReservationsController {
 
   @EventPattern('reservation_created')
   handleReservationCreated(data: any) {
-    console.log('Reservation created event received:', data);
+    console.log('📥 [RabbitMQ] Received reservation_created event:', {
+      id: data.id,
+      userId: data.userId,
+      hotelId: data.hotelId,
+      date: data.date,
+    });
   }
 
   @EventPattern('reservation_updated')
   handleReservationUpdated(data: any) {
-    console.log('Reservation updated event received:', data);
+    console.log('📥 [RabbitMQ] Received reservation_updated event:', {
+      id: data.id,
+      userId: data.userId,
+      hotelId: data.hotelId,
+    });
   }
 
   @EventPattern('reservation_deleted')
   handleReservationDeleted(data: any) {
-    console.log('Reservation deleted event received:', data);
+    console.log('📥 [RabbitMQ] Received reservation_deleted event:', data);
   }
 }

@@ -23,6 +23,11 @@ export class ReservationsService {
       },
     });
 
+    console.log('📤 [RabbitMQ] Emitting reservation_created event:', {
+      id: reservation.id,
+      userId: reservation.userId,
+      hotelId: reservation.hotelId,
+    });
     this.client.emit('reservation_created', reservation);
 
     return reservation;
@@ -62,6 +67,9 @@ export class ReservationsService {
       },
     });
 
+    console.log('📤 [RabbitMQ] Emitting reservation_updated event:', {
+      id: reservation.id,
+    });
     this.client.emit('reservation_updated', reservation);
 
     return reservation;
@@ -72,6 +80,7 @@ export class ReservationsService {
       where: { id },
     });
 
+    console.log('📤 [RabbitMQ] Emitting reservation_deleted event:', { id });
     this.client.emit('reservation_deleted', { id });
 
     return reservation;

@@ -8,7 +8,9 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         name: 'RESERVATION_SERVICE',
         transport: Transport.RMQ,
         options: {
-          urls: ['amqp://localhost:5672'],
+          urls: [
+            'amqps://yeloctib:VY1wIWh9UlDHcWSsxhirAz_7cSHgGqw-@cow.rmq2.cloudamqp.com/yeloctib',
+          ],
           queue: 'reservations_queue',
           queueOptions: {
             durable: false,

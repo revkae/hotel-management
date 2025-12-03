@@ -7,6 +7,10 @@ async function bootstrap() {
 
   // Only connect to RabbitMQ if URL is provided
   if (process.env.RABBITMQ_URL) {
+    console.log('🐰 [RabbitMQ] Connecting to RabbitMQ...');
+    console.log('🐰 [RabbitMQ] URL:', process.env.RABBITMQ_URL);
+    console.log('🐰 [RabbitMQ] Queue: reservations_queue');
+
     app.connectMicroservice<MicroserviceOptions>({
       transport: Transport.RMQ,
       options: {
@@ -18,9 +22,10 @@ async function bootstrap() {
       },
     });
     await app.startAllMicroservices();
-    console.log('RabbitMQ microservice started');
+    console.log('✅ [RabbitMQ] Microservice started successfully');
+    console.log('🐰 [RabbitMQ] Listening for events on reservations_queue');
   } else {
-    console.log('RABBITMQ_URL not set, skipping microservice initialization');
+    console.log('⚠️  [RabbitMQ] RABBITMQ_URL not set, skipping microservice initialization');
   }
 
   app.enableCors();
